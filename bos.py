@@ -222,6 +222,8 @@ def main(bridgeauth_dir):
             extrainfo_desc = running_obfs4_bridges[fpr]
             addr, port, _ = extrainfo_desc.transport["obfs4"]
             contact = fpr2contact.get(fpr, "N/A")
+            if contact is not "N/A":
+                contact = contact.decode("utf-8")
             results.append([fpr, "{}:{}".format(addr, port), contact])
     print(tabulate.tabulate(results, headers="firstrow"))
 
