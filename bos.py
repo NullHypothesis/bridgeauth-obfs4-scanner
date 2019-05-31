@@ -161,7 +161,10 @@ def main(bridgeauth_dir):
     handler = stem.descriptor.DocumentHandler.ENTRIES
     with open("{}/networkstatus-bridges".format(bridgeauth_dir),
               "rb") as consensus_file:
-        for bridge in parse_file(consensus_file, document_handler=handler):
+        for bridge in parse_file(consensus_file,
+                                 descriptor_type=("network-status-consensus-3 "
+                                                  "1.0"),
+                                 document_handler=handler):
             num_bridges += 1
 
             # Ignore bridges that don't have the 'Running' flag.
